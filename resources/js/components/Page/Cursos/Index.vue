@@ -6,14 +6,6 @@
                     <div class="col-sm-12">
                         <div class="page-sub-header">
                             <h3 class="page-title">Listado de Cursos</h3>
-                            <ul class="breadcrumb">
-                                <li class="breadcrumb-item">
-                                    <a href="">Student</a>
-                                </li>
-                                <li class="breadcrumb-item active">
-                                    All Students
-                                </li>
-                            </ul>
                         </div>
                     </div>
                 </div>
@@ -64,47 +56,24 @@
                             <div class="page-header">
                                 <div class="row align-items-center">
                                     <div class="col">
-                                        <h3 class="page-title">Students</h3>
+                                        <h3 class="page-title">CURSOS</h3>
                                     </div>
                                     <div
                                         class="col-auto text-end float-end ms-auto download-grp"
                                     >
                                         <a
-                                            href=""
-                                            class="btn btn-outline-gray me-2 active"
-                                        >
-                                            <i
-                                                class="fa fa-list"
-                                                aria-hidden="true"
-                                            ></i>
-                                        </a>
-                                        <a
-                                            href="{{ route('student/grid') }}"
-                                            class="btn btn-outline-gray me-2"
-                                        >
-                                            <i
-                                                class="fa fa-th"
-                                                aria-hidden="true"
-                                            ></i>
-                                        </a>
-                                        <a
-                                            href="#"
-                                            class="btn btn-outline-primary me-2"
-                                            ><i class="fas fa-download"></i>
-                                            Download</a
-                                        >
-                                        <a
                                             href="{{ route('student/add/page') }}"
                                             class="btn btn-primary"
-                                            ><i class="fas fa-plus"></i
-                                        ></a>
+                                            ><i class="fas fa-plus"> </i> Nuevo
+                                            Curso</a
+                                        >
                                     </div>
                                 </div>
                             </div>
 
                             <div class="table-responsive">
                                 <table
-                                    class="table border-0 star-student table-hover table-center mb-0 datatable table-striped"
+                                    class="table border-0 star-student table-hover table-center mb-0 table-striped"
                                 >
                                     <thead class="student-thread">
                                         <tr>
@@ -120,12 +89,12 @@
                                                 </div>
                                             </th>
                                             <th>ID</th>
-                                            <th>Name</th>
-                                            <th>Class</th>
-                                            <th>DOB</th>
-                                            <th>Parent Name</th>
-                                            <th>Mobile Number</th>
-                                            <th>Address</th>
+                                            <th>Imagen Categoria</th>
+                                            <th>Nombre Categoria</th>
+                                            <th>Imagen Curso</th>
+                                            <th>Nombre del Curso</th>
+                                            <th>Estado</th>
+
                                             <th class="text-end">Action</th>
                                         </tr>
                                     </thead>
