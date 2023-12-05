@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\CursoController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -23,3 +24,16 @@ Route::post('/curso', [CursoController::class, 'store']);
 Route::delete('/delete', [CursoController::class, 'delete'])->name('delete');
 Route::get('/edit/{id}', [CursoController::class, 'edit'])->name('edit');
 Route::post('/update', [CursoController::class, 'update'])->name('update');
+
+
+// Route::get('categorias', [CategoriaController::class, 'index'])->name('categria.index');
+// Route::post('crearCategoria', [CategoriaController::class, 'store'])->name(
+//     'crearCategoria.store'
+// );
+
+Route::resource('categorias', CategoriaController::class);
+Route::post('crearCategoria/{id}', [CategoriaController::class, "update"]);
+Route::delete('delete/{id}', [CategoriaController::class, 'delete'])->name('delete');
+
+
+Route::resource('cursos', CursoController::class);

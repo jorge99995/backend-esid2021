@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\CursosCollection;
 use App\Models\Curso;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -11,7 +12,12 @@ class CursoController extends Controller
 
     public function index()
     {
-        //
+
+        $cursos = Curso::orderby("id", "asc")->get();
+
+        return response()->json([
+            "cursos" => CursosCollection::make($cursos),
+        ]);
     }
 
 

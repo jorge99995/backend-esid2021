@@ -9,11 +9,15 @@ class Curso extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
 
+    protected $fillable = [
         'nombre_cursos',
-        'avatar'
     ];
 
     public $timestamps = false;
+
+    public function categoria()
+    {
+        return $this->belongsTo(Categoria::class, 'curso_id');
+    }
 }
