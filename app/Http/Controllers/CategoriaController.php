@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\CategoriaCollection;
+
 use App\Models\Categoria;
 use Illuminate\Http\Request;
 
@@ -11,12 +11,8 @@ class CategoriaController extends Controller
 
     public function index()
     {
-        //
-
-        $categories = Categoria::orderby("id", "asc")->get();
-        return response()->json([
-            "categories" => CategoriaCollection::make($categories),
-        ]);
+        $categoria = Categoria::all();
+        return response()->json($categoria);
     }
 
 
@@ -28,7 +24,7 @@ class CategoriaController extends Controller
 
     public function store(Request $request)
     {
-        //
+
         $categorias = Categoria::create($request->all());
         return response()->json(['msg' => 'se creo correctament'], 200);
     }

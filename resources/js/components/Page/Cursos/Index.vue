@@ -61,10 +61,15 @@
                                     <div
                                         class="col-auto text-end float-end ms-auto download-grp"
                                     >
-                                        <a href="" class="btn btn-primary"
-                                            ><i class="fas fa-plus"> </i> Nuevo
-                                            Curso</a
+                                        <button
+                                            type="button"
+                                            class="btn btn-primary waves-effect waves-light mt-1"
+                                            data-bs-toggle="modal"
+                                            data-target="#exampleModal"
                                         >
+                                            <i class="fas fa-plus"> </i> Nuevo
+                                            Curso
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -87,16 +92,15 @@
                                                 </div>
                                             </th>
                                             <th>ID</th>
+                                            <th>Nombre Curso</th>
                                             <th>Nombre Categoria</th>
-                                            <th>Nombre del Curso</th>
-                                            <th>Estado</th>
 
                                             <th class="text-end">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody class="table-border-bottom-0">
                                         <tr
-                                            v-for="item in CATEGORIAS"
+                                            v-for="item in CURSOS"
                                             :key="item.id"
                                         >
                                             <td>
@@ -110,28 +114,11 @@
                                                     />
                                                 </div>
                                             </td>
-                                            <td>STD{{ ++item.id }}</td>
+                                            <td>STD{{ ++item.index }}</td>
                                             <td hidden class="id"></td>
 
                                             <td>{{ item.nombre_categoria }}</td>
-                                            <td>
-                                                {{
-                                                    item.curso_id.nombre_cursos
-                                                }}
-                                            </td>
-                                            <td>
-                                                <span
-                                                    class="text-success"
-                                                    v-if="item.status == 1"
-                                                    >Activo</span
-                                                >
-                                                <span
-                                                    class="text-danger"
-                                                    v-if="item.status == 2"
-                                                    >Des-Activo</span
-                                                >
-                                            </td>
-
+                                            <td>{{ item.nombre_curso }}</td>
                                             <td class="text-end">
                                                 <div class="actions">
                                                     <a
@@ -168,7 +155,7 @@
 export default {
     data() {
         return {
-            CATEGORIAS: [],
+            CURSOS: [],
         };
     },
 
@@ -178,10 +165,8 @@ export default {
 
     methods: {
         async listarCategorias() {
-            this.CATEGORIAS = await (
-                await axios.get("/api/categorias")
-            ).data.categorias;
-            console.log(this.CATEGORIAS);
+            this.CURSOS = await (await axios.get("/api/cursos")).data;
+            console.log(this.CURSOS);
         },
     },
 };

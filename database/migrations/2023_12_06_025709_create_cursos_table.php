@@ -15,7 +15,9 @@ class CreateCursosTable extends Migration
     {
         Schema::create('cursos', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre_cursos');
+            $table->string('nombre_curso');
+            $table->unsignedBigInteger('categoria_id');
+            $table->foreign('categoria_id')->references('id')->on('categorias')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -1,7 +1,10 @@
 <?php
 
 use App\Http\Controllers\CategoriaController;
+use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\CursoClienteController;
 use App\Http\Controllers\CursoController;
+use App\Models\Curso_Cliente;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -37,3 +40,5 @@ Route::delete('delete/{id}', [CategoriaController::class, 'delete'])->name('dele
 
 
 Route::resource('cursos', CursoController::class);
+Route::resource('cliente', ClienteController::class);
+Route::resource('cursocliente', CursoClienteController::class);

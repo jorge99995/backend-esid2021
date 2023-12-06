@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\CursosCollection;
+
 use App\Models\Curso;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class CursoController extends Controller
@@ -13,11 +14,13 @@ class CursoController extends Controller
     public function index()
     {
 
-        $cursos = Curso::orderby("id", "asc")->get();
 
-        return response()->json([
-            "cursos" => CursosCollection::make($cursos),
-        ]);
+
+        $cursos = DB::table('cursos')
+            ->select('nombre_curso', 'nombre_categoria', 'cursos.id as index')
+            ->join('categorias', 'categorias.id', '=', 'cursos.categoria_id')
+            ->get();
+        return response()->json($cursos);
     }
 
 

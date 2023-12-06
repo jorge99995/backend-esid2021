@@ -15,10 +15,11 @@ class CategoriaResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id' => $this->id,
-            'nombre_categoria' => $this->nombre_categoria,
+            'id' => $this->resource->id,
+            'nombre_categoria' => $this->resource->nombre_categoria,
+            'curso_id' => $this->resource->curso_id,
             "status" => $this->resource->status ?? 1,
-            'Curso' => CursosResource::collection($this->cursos),
+
         ];
     }
 }

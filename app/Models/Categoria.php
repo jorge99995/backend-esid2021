@@ -11,13 +11,8 @@ class Categoria extends Model
 
     protected $fillable = [
         'id',
-        'nombre_categoria',
-        'status',
-        'curso_id'
+        'nombre_categoria'
     ];
 
-    public function cursos()
-    {
-        return $this->hasMany(Curso::class);
-    }
+    public $timestamps = false;
 }
