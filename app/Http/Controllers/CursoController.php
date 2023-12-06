@@ -27,20 +27,21 @@ class CursoController extends Controller
     public function create()
     {
         //
+
+
     }
 
 
     public function store(Request $request)
     {
 
-        $file = $request->file('avatar');
+        $cursos = new Curso();
+        $cursos->nombre_curso = $request->input('nombre_curso');
+        $cursos->categoria_id = $request->input('nombre_categoria');
+        $cursos->save();
 
-        $fileName = time() . '.' . $file->getClientOriginalExtension();
+        // $empData = ['nombre_curso' => $request->nombre_curso, 'nombre_categoria' => $request->categorias->nombre_categoria];
 
-        $file->storeAs('public/images', $fileName);
-
-        $empData = ['nombre_cursos' => $request->nombre_cursos, 'avatar' => $fileName];
-        Curso::create($empData);
         return response()->json([
 
             'status' => 200,
@@ -81,12 +82,12 @@ class CursoController extends Controller
     }
 
     // handle delete an Curso ajax request
-    public function delete(Request $request)
+    public function destroy($id)
     {
-        $id = $request->id;
-        $emp = Curso::find($id);
-        if (Storage::delete('public/images/' . $emp->avatar)) {
-            Curso::destroy($id);
-        }
+        $curso = Curso::findOrfail($id);
+        $curso->delete();
+        return response()->json([
+            'msg' => 'se elimino correctamente',
+        ]);
     }
 }

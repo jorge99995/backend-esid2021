@@ -40,5 +40,6 @@ Route::delete('delete/{id}', [CategoriaController::class, 'delete'])->name('dele
 
 
 Route::resource('cursos', CursoController::class);
+
 Route::resource('cliente', ClienteController::class);
 Route::resource('cursocliente', CursoClienteController::class);

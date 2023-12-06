@@ -15,4 +15,8 @@ class Categoria extends Model
     ];
 
     public $timestamps = false;
+    public function curso()
+    {
+        return $this->belongsTo('App\Curso');
+    }
 }

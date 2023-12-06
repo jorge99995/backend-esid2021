@@ -49,7 +49,7 @@ class CategoriaController extends Controller
         return response()->json(['msg' => 'se actualizo correctament'], 200);
     }
 
-    public function destroy($id)
+    public function delete($id)
     {
         $categorias  = Categoria::findOrFail($id);
         $categorias->delete();

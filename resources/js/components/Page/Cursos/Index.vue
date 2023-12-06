@@ -11,70 +11,117 @@
                 </div>
             </div>
 
-            <div class="student-group-form">
-                <div class="row">
-                    <div class="col-lg-3 col-md-6">
-                        <div class="form-group">
-                            <input
-                                type="text"
-                                class="form-control"
-                                placeholder="Search by ID ..."
-                            />
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="form-group">
-                            <input
-                                type="text"
-                                class="form-control"
-                                placeholder="Search by Name ..."
-                            />
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="form-group">
-                            <input
-                                type="text"
-                                class="form-control"
-                                placeholder="Search by Phone ..."
-                            />
-                        </div>
-                    </div>
-                    <div class="col-lg-2">
-                        <div class="search-student-btn">
-                            <button type="btn" class="btn btn-primary">
-                                Search
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <div class="row">
                 <div class="col-sm-12">
                     <div class="card card-table comman-shadow">
+                        <Toolbar class="mb-4">
+                            <template #start>
+                                <Button
+                                    label="NUEVO CURSO"
+                                    icon="pi pi-plus"
+                                    severity="success"
+                                    class="mr-2"
+                                    @click="openNew"
+                                />
+                            </template>
+                            <template #end>
+                                <FileUpload
+                                    mode="basic"
+                                    accept="image/*"
+                                    :maxFileSize="1000000"
+                                    label="Import"
+                                    chooseLabel="Import"
+                                    class="mr-2 inline-block"
+                                />
+                                <Button
+                                    label="Export"
+                                    icon="pi pi-upload"
+                                    severity="help"
+                                />
+                            </template>
+                        </Toolbar>
                         <div class="card-body">
-                            <div class="page-header">
-                                <div class="row align-items-center">
-                                    <div class="col">
-                                        <h3 class="page-title">CURSOS</h3>
-                                    </div>
+                            <DataTable
+                                :value="CURSOS"
+                                tableStyle="min-width: 50rem"
+                                paginator
+                                :rows="5"
+                                :rowsPerPageOptions="[5, 10, 20, 50]"
+                            >
+                                <template #header>
                                     <div
-                                        class="col-auto text-end float-end ms-auto download-grp"
+                                        class="flex flex-wrap gap-2 align-items-center justify-content-between"
                                     >
-                                        <button
-                                            type="button"
-                                            class="btn btn-primary waves-effect waves-light mt-1"
-                                            data-bs-toggle="modal"
-                                            data-target="#exampleModal"
-                                        >
-                                            <i class="fas fa-plus"> </i> Nuevo
-                                            Curso
-                                        </button>
+                                        <h4 class="m-2">Gestión de Cursos</h4>
                                     </div>
+                                </template>
+                                <Column
+                                    field="index"
+                                    header="ID"
+                                    sortable
+                                    style="width: 25%"
+                                ></Column>
+                                <Column
+                                    field="nombre_categoria"
+                                    header="Nombre de la categoria"
+                                    sortable
+                                    style="width: 25%"
+                                ></Column>
+                                <Column
+                                    field="nombre_curso"
+                                    header="Nombre del curso"
+                                    sortable
+                                    style="width: 25%"
+                                ></Column>
+                                <Column
+                                    field="quantity"
+                                    header="Acciones"
+                                ></Column>
+                            </DataTable>
+                            <Dialog
+                                v-model:visible="productDialog"
+                                :style="{ width: '450px' }"
+                                header="CREACION DE CURSOS"
+                                :modal="true"
+                                class="p-fluid"
+                            >
+                                <img class="block m-auto pb-3" />
+                                <div class="field">
+                                    <label for="Nombre de la categoria"
+                                        >Nombre de la categoria</label
+                                    >
+                                    <InputText
+                                        id="name"
+                                        required="true"
+                                        autofocus
+                                    />
                                 </div>
-                            </div>
 
-                            <div class="table-responsive">
+                                <div class="field">
+                                    <label for="Nombre de la categoria"
+                                        >Nombre del Curso</label
+                                    >
+                                    <InputText
+                                        id="name"
+                                        required="true"
+                                        autofocus
+                                    />
+                                </div>
+
+                                <template #footer>
+                                    <Button
+                                        label="Cancel"
+                                        icon="pi pi-times"
+                                        text
+                                    />
+                                    <Button
+                                        label="Save"
+                                        icon="pi pi-check"
+                                        text
+                                    />
+                                </template>
+                            </Dialog>
+                            <!-- <div class="table-responsive">
                                 <table
                                     class="table border-0 star-student table-hover table-center mb-0 table-striped"
                                 >
@@ -143,7 +190,7 @@
                                         </tr>
                                     </tbody>
                                 </table>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>
@@ -156,6 +203,7 @@ export default {
     data() {
         return {
             CURSOS: [],
+            productDialog: false,
         };
     },
 
@@ -168,6 +216,12 @@ export default {
             this.CURSOS = await (await axios.get("/api/cursos")).data;
             console.log(this.CURSOS);
         },
+
+        openNew() {
+            this.productDialog = true;
+        },
+
+        async crearCurso() {},
     },
 };
 </script>
